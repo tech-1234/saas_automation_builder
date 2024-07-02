@@ -2,6 +2,7 @@
 
 import { env } from "@/../env.mjs";
 import * as LR from "@uploadcare/blocks";
+import "@uploadcare/react-uploader/core.css";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 
@@ -24,20 +25,26 @@ const UploadCareButton = ({ onUpload }: Props) => {
         router.refresh();
       }
     };
-    ctxProviderRef.current?.addEventListener(
-      "file-upload-success",
-      handleUpload
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const currentRef = ctxProviderRef.current;
+
+    if (currentRef) {
+      currentRef.addEventListener("file-upload-success", handleUpload);
+    }
+
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener("file-upload-success", handleUpload);
+      }
+    };
+  }, [onUpload, router]);
 
   return (
     <div>
-      <lr-config ctx-name="my-uploader" pubkey="a9428ff5ff90ae7a64eb" />
+      <lr-config ctx-name="my-uploader" pubkey="4af769b0724b38b1072b" />
 
       <lr-file-uploader-regular
         ctx-name="my-uploader"
-        css-src={`${env.NEXT_PUBLIC_UPLOAD_CARE_CSS_SRC}${LR.PACKAGE_VERSION}${env.NEXT_PUBLIC_UPLOAD_CARE_SRC_PACKAGE}`}
+        css-src={`https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.44.0/web/lr-file-uploader-regular.min.css`}
       />
 
       <lr-upload-ctx-provider ctx-name="my-uploader" ref={ctxProviderRef} />
