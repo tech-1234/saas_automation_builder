@@ -1,10 +1,12 @@
 "use client";
 
+import { EditUserProfileSchema } from "@/lib/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import React, { use, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { EditUserProfileSchema } from "@/lib/types";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -14,8 +16,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Loader2 } from "lucide-react";
 
 type Props = {
   //   user: any;
@@ -82,11 +82,11 @@ const ProfileForm = (props: Props) => {
         />
         <Button
           type="submit"
-          className="self-start hover:bg-[#2F006B] hover:text-white "
+          className="self-start hover:bg-[#2F006B] hover:text-white"
         >
           {isLoading ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="mr-2 size-4 animate-spin" />
               Saving
             </>
           ) : (

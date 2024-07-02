@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
-import UploadCareButton from "./uploadcare-button";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
+import UploadCareButton from "./uploadcare-button";
 
 type Props = {
   userImage: string | null;
@@ -24,7 +25,7 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
 
   return (
     <div className="flex flex-col">
-      <p className="text-lg text-white"> Profile Picture</p>
+      <p className="text-lg text-white">Profile Picture</p>
       <div className="flex h-[30vh] flex-col items-center justify-center">
         {userImage ? (
           <>

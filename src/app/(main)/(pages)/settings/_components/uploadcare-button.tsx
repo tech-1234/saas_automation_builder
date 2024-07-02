@@ -1,7 +1,9 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+
+import { env } from "@/../env.mjs";
 import * as LR from "@uploadcare/blocks";
 import { useRouter } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 
 type Props = {
   onUpload: (e: string) => any;
@@ -26,6 +28,7 @@ const UploadCareButton = ({ onUpload }: Props) => {
       "file-upload-success",
       handleUpload
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -34,7 +37,7 @@ const UploadCareButton = ({ onUpload }: Props) => {
 
       <lr-file-uploader-regular
         ctx-name="my-uploader"
-        css-src={`${process.env.NEXT_PUBLIC_UPLOAD_CARE_CSS_SRC}${LR.PACKAGE_VERSION}${process.env.NEXT_PUBLIC_UPLOAD_CARE_SRC_PACKAGE}`}
+        css-src={`${env.NEXT_PUBLIC_UPLOAD_CARE_CSS_SRC}${LR.PACKAGE_VERSION}${env.NEXT_PUBLIC_UPLOAD_CARE_SRC_PACKAGE}`}
       />
 
       <lr-upload-ctx-provider ctx-name="my-uploader" ref={ctxProviderRef} />

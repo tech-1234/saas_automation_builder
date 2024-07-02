@@ -1,17 +1,19 @@
-/** @type {import('next').NextConfig} */
+import "./env.mjs";
+
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'img.clerk.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'ucarecdn.com',
-            },
-        ],
-    },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ucarecdn.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
